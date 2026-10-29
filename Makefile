@@ -30,7 +30,7 @@ clean:
 	rm -f $(OUTFILE) $(OBJFILES) image.iso
 
 $(ISOFILE): $(OUTFILE)
-	mv $(OUTFILE) iso
+	cp $(OUTFILE) iso
 	xorriso -as mkisofs -R -r -J -b limine-bios-cd.bin \
         -no-emul-boot -boot-load-size 4 -boot-info-table -hfsplus \
         -apm-block-size 2048 --efi-boot limine-uefi-cd.bin \
