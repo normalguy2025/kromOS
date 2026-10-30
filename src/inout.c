@@ -1,4 +1,4 @@
-#include <inouthelpers.h>
+#include <inout.h>
 
 unsigned char inb(unsigned short port) {
 	unsigned char result=0;

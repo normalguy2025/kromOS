@@ -1,6 +1,6 @@
 
 
-#include <idt.h>
+#include <interrupts.h>
 
 void fill_InterruptDescriptor(struct InterruptDescriptor* IDptr,void* offset,unsigned short selector,unsigned char ist,
 unsigned char type_attribute) {
@@ -13,5 +13,18 @@ unsigned char type_attribute) {
 	IDptr->offset_3 = ((unsigned long long)offset >> 32) & 0xFFFFFFFF;
 	IDptr->zero = 0;
 	return;
+}
+
+void load_idt(struct IDTR64* idtr) {
+	__asm__ volatile ("cli");
+	__asm__ volatile ("lidt %0" : :  "m"(*idtr) : "memory");
+
+}
+
+unsigned short get_cs(void) {
+	unsigned short ax;
+
+	__asm__ volatile ("mov %%cs, %0" : "=r"(ax));
+	return ax;
 }
 
