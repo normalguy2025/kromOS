@@ -10,6 +10,7 @@ CC = clang
 LD = ld.lld
 
 CFLAGS = -target x86_64-unknown-elf -ffreestanding -fno-stack-protector -fno-pic -mgeneral-regs-only -mno-red-zone -mcmodel=kernel -O2 -Wall -Wextra -I./include
+CFLAGS += -g -gdwarf-4
 SFLAGS = -target x86_64-unknown-elf
 LDFLAGS = -nostdlib -static -z max-page-size=0x1000 -T linker.lds
 

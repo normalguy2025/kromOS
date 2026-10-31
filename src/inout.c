@@ -2,11 +2,16 @@
 
 unsigned char inb(unsigned short port) {
 	unsigned char result=0;
-	__asm__ volatile ("inb %1, %0" : "=a" (result) : "dN" (port));
+	__asm__ volatile ("inb %w1, %b0" : "=a" (result) : "Nd" (port) : "memory");
 	return result;
 }
 
-void outb(unsigned char value, unsigned short port) {
-	__asm__ volatile ("outb %0, %1" : : "a"(value), "dN"(port));
+void outb(unsigned short port,unsigned char value) {
+	__asm__ volatile ("outb %b0, %w1" : : "a"(value), "Nd"(port) : "memory");
+	return;
+}
+
+void io_wait(void) {
+	outb(0x80,0);
 	return;
 }

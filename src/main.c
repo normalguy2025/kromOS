@@ -31,7 +31,10 @@ void kmain(void) {
 
 	struct limine_framebuffer *framebuffer = bootinfo->framebuffer_request->response->framebuffers[0];
 	init_print(framebuffer);
-        printk("I like kebab",~0);
+		
+        
+	printk("I like kebab",~0);
+
 	
 
 	hfe();

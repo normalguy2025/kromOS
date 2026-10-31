@@ -72,5 +72,7 @@ isr_common:
 	pop rcx
 	pop rbx
 	pop rax
+
+	add rsp, 16
 	iretq
 
